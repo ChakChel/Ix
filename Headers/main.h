@@ -12,17 +12,26 @@
 #define	_MAIN_
 
 /* INCLUDES DEPENDENCIES ***************/
-#include "hardware.h"
-#include "software.h"
-#include "uart.h"
-#include "timer.h"
-#include "pwm.h"
-#include "ads7885Pic32.h"
-#include <string.h>
+
+// Librairie standarde du C
 #include <stdlib.h>
+
+// Configuration matérielle
+#include "hardware.h"
+
+// Configuration logicielle
+#include "software.h"
+
+// Application
+#include <p32xxxx.h>    // PIC32
+#include <plib.h>       // Périphériques
+
+// Périphériques
+#include "ads7885Pic32.h"
+#include "gpio.h"
 #include "pwm.h"
-
-
+#include "timer.h"
+#include "uart.h"
 
 /* CONFIG ***************/
 #pragma config FWDTEN=OFF
@@ -47,7 +56,7 @@
  * @fn      void init( void );
  * @brief   Configuration des périphériques
  */
-void init( void );
+void userInit( void );
 
 /**
  * @fn      void intConfig( void );
@@ -71,7 +80,7 @@ void close( void );
  * @return  Commande à l'instant t
  */
 unsigned int fTransfert( unsigned int consigne, unsigned int* mesure,\
-        unsigned int* commande );
+unsigned int* commande );
 
 /**
  * @fn      int main( void );
