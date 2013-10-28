@@ -17,7 +17,7 @@
 
 
 /* MACROS ***************/
-#define PRESCALE3       64
+#define PRESCALE3       1
 #define FREQ_TIMER      500000
 #define T3_TICK       	(PERIPH_FREQ/PRESCALE3/FREQ_TIMER)
 #define T4_TICK       	65535

@@ -1,6 +1,6 @@
 /**
  * @file    uart.h
- * @brief   Header des fonctions associées à l'UART
+ * @brief   Header des fonctions associÃ©es Ã  l'UART
  * IDE MPLAB X vs Beta 7.02
  * Compilateur XC32 vs 2.0
  * @author  Ixchel Intelligent Systems
@@ -17,7 +17,7 @@
 
 
 /* MACROS ***************/
-#define UART_FREQ   (40000000L)     // Fréquence UART
+#define UART_FREQ   (40000000L)     // FrÃ©quence UART
 #define BAUDRATE    115200          // Baudrate
 
 
@@ -37,22 +37,22 @@ void uartIntConfig( void );
 
 /**
  * @fn      char uartGetChar( void )
- * @brief   Réception d'un caractère par l'UART
- * @return  Caractère reçu, ou '\0' si aucun caractère n'a été reçu
+ * @brief   RÃ©ception d'un caractÃ¨re par l'UART
+ * @return  CaractÃ¨re reÃ§u, ou '\0' si aucun caractÃ¨re n'a Ã©tÃ© reÃ§u
  */
 char uartGetChar( void );
 
 /**
  * @fn      void uartPutChar( char c )
- * @brief   Envoi d'un caractère par l'UART
- * @param   c   Caractère à envoyer
+ * @brief   Envoi d'un caractÃ¨re par l'UART
+ * @param   c   CaractÃ¨re Ã  envoyer
  */
 void uartPutChar( char c );
 
 /**
  * @fn      void uartPutString( char* s )
- * @brief   Envoi d'un string par l'UART suivi d'un retour à la ligne
- * @param   s   Chaîne de caractères à envoyer
+ * @brief   Envoi d'un string par l'UART suivi d'un retour Ã  la ligne
+ * @param   s   ChaÃ®ne de caractÃ¨res Ã  envoyer
  */
 void uartPutString( char* s );
 

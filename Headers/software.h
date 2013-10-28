@@ -20,7 +20,7 @@
 /* GLOBAL VARIABLES ***************/
 // Valeurs
 unsigned int consigne = 0;
-unsigned int mesure[TAILLE_MESURE];
+unsigned int mesure[3][TAILLE_MESURE];
 unsigned int commande[TAILLE_COMMANDE];
 
 // Pointeurs
@@ -31,6 +31,7 @@ unsigned int pCommande = 0;
 unsigned int flagTraitementT3 = 0;
 unsigned int flagTraitementT4 = 0;
 unsigned int flagReception = 0;
+unsigned int flagAuto = 1;
 
 // Références
 signed int spiChannel = -1;

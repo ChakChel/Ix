@@ -44,12 +44,18 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 # Distribution Directory
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
+# Source Files Quoted if spaced
+SOURCEFILES_QUOTED_IF_SPACED=../Sources/main.c ../Sources/pwm.c ../Sources/uart.c ../Sources/timer.c ../Sources/gpio.c ../Sources/ads7885Pic32.c
+
 # Object Files Quoted if spaced
 OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/2037729719/main.o ${OBJECTDIR}/_ext/2037729719/pwm.o ${OBJECTDIR}/_ext/2037729719/uart.o ${OBJECTDIR}/_ext/2037729719/timer.o ${OBJECTDIR}/_ext/2037729719/gpio.o ${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o
 POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/2037729719/main.o.d ${OBJECTDIR}/_ext/2037729719/pwm.o.d ${OBJECTDIR}/_ext/2037729719/uart.o.d ${OBJECTDIR}/_ext/2037729719/timer.o.d ${OBJECTDIR}/_ext/2037729719/gpio.o.d ${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o.d
 
 # Object Files
 OBJECTFILES=${OBJECTDIR}/_ext/2037729719/main.o ${OBJECTDIR}/_ext/2037729719/pwm.o ${OBJECTDIR}/_ext/2037729719/uart.o ${OBJECTDIR}/_ext/2037729719/timer.o ${OBJECTDIR}/_ext/2037729719/gpio.o ${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o
+
+# Source Files
+SOURCEFILES=../Sources/main.c ../Sources/pwm.c ../Sources/uart.c ../Sources/timer.c ../Sources/gpio.c ../Sources/ads7885Pic32.c
 
 
 CFLAGS=
@@ -88,62 +94,74 @@ ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 ${OBJECTDIR}/_ext/2037729719/main.o: ../Sources/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/2037729719 
 	@${RM} ${OBJECTDIR}/_ext/2037729719/main.o.d 
+	@${RM} ${OBJECTDIR}/_ext/2037729719/main.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/2037729719/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Headers" -I"../Sources" -I".." -I"." -MMD -MF "${OBJECTDIR}/_ext/2037729719/main.o.d" -o ${OBJECTDIR}/_ext/2037729719/main.o ../Sources/main.c   
 	
 ${OBJECTDIR}/_ext/2037729719/pwm.o: ../Sources/pwm.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/2037729719 
 	@${RM} ${OBJECTDIR}/_ext/2037729719/pwm.o.d 
+	@${RM} ${OBJECTDIR}/_ext/2037729719/pwm.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/2037729719/pwm.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Headers" -I"../Sources" -I".." -I"." -MMD -MF "${OBJECTDIR}/_ext/2037729719/pwm.o.d" -o ${OBJECTDIR}/_ext/2037729719/pwm.o ../Sources/pwm.c   
 	
 ${OBJECTDIR}/_ext/2037729719/uart.o: ../Sources/uart.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/2037729719 
 	@${RM} ${OBJECTDIR}/_ext/2037729719/uart.o.d 
+	@${RM} ${OBJECTDIR}/_ext/2037729719/uart.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/2037729719/uart.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Headers" -I"../Sources" -I".." -I"." -MMD -MF "${OBJECTDIR}/_ext/2037729719/uart.o.d" -o ${OBJECTDIR}/_ext/2037729719/uart.o ../Sources/uart.c   
 	
 ${OBJECTDIR}/_ext/2037729719/timer.o: ../Sources/timer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/2037729719 
 	@${RM} ${OBJECTDIR}/_ext/2037729719/timer.o.d 
+	@${RM} ${OBJECTDIR}/_ext/2037729719/timer.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/2037729719/timer.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Headers" -I"../Sources" -I".." -I"." -MMD -MF "${OBJECTDIR}/_ext/2037729719/timer.o.d" -o ${OBJECTDIR}/_ext/2037729719/timer.o ../Sources/timer.c   
 	
 ${OBJECTDIR}/_ext/2037729719/gpio.o: ../Sources/gpio.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/2037729719 
 	@${RM} ${OBJECTDIR}/_ext/2037729719/gpio.o.d 
+	@${RM} ${OBJECTDIR}/_ext/2037729719/gpio.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/2037729719/gpio.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Headers" -I"../Sources" -I".." -I"." -MMD -MF "${OBJECTDIR}/_ext/2037729719/gpio.o.d" -o ${OBJECTDIR}/_ext/2037729719/gpio.o ../Sources/gpio.c   
 	
 ${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o: ../Sources/ads7885Pic32.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/2037729719 
 	@${RM} ${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o.d 
+	@${RM} ${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Headers" -I"../Sources" -I".." -I"." -MMD -MF "${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o.d" -o ${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o ../Sources/ads7885Pic32.c   
 	
 else
 ${OBJECTDIR}/_ext/2037729719/main.o: ../Sources/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/2037729719 
 	@${RM} ${OBJECTDIR}/_ext/2037729719/main.o.d 
+	@${RM} ${OBJECTDIR}/_ext/2037729719/main.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/2037729719/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Headers" -I"../Sources" -I".." -I"." -MMD -MF "${OBJECTDIR}/_ext/2037729719/main.o.d" -o ${OBJECTDIR}/_ext/2037729719/main.o ../Sources/main.c   
 	
 ${OBJECTDIR}/_ext/2037729719/pwm.o: ../Sources/pwm.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/2037729719 
 	@${RM} ${OBJECTDIR}/_ext/2037729719/pwm.o.d 
+	@${RM} ${OBJECTDIR}/_ext/2037729719/pwm.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/2037729719/pwm.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Headers" -I"../Sources" -I".." -I"." -MMD -MF "${OBJECTDIR}/_ext/2037729719/pwm.o.d" -o ${OBJECTDIR}/_ext/2037729719/pwm.o ../Sources/pwm.c   
 	
 ${OBJECTDIR}/_ext/2037729719/uart.o: ../Sources/uart.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/2037729719 
 	@${RM} ${OBJECTDIR}/_ext/2037729719/uart.o.d 
+	@${RM} ${OBJECTDIR}/_ext/2037729719/uart.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/2037729719/uart.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Headers" -I"../Sources" -I".." -I"." -MMD -MF "${OBJECTDIR}/_ext/2037729719/uart.o.d" -o ${OBJECTDIR}/_ext/2037729719/uart.o ../Sources/uart.c   
 	
 ${OBJECTDIR}/_ext/2037729719/timer.o: ../Sources/timer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/2037729719 
 	@${RM} ${OBJECTDIR}/_ext/2037729719/timer.o.d 
+	@${RM} ${OBJECTDIR}/_ext/2037729719/timer.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/2037729719/timer.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Headers" -I"../Sources" -I".." -I"." -MMD -MF "${OBJECTDIR}/_ext/2037729719/timer.o.d" -o ${OBJECTDIR}/_ext/2037729719/timer.o ../Sources/timer.c   
 	
 ${OBJECTDIR}/_ext/2037729719/gpio.o: ../Sources/gpio.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/2037729719 
 	@${RM} ${OBJECTDIR}/_ext/2037729719/gpio.o.d 
+	@${RM} ${OBJECTDIR}/_ext/2037729719/gpio.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/2037729719/gpio.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Headers" -I"../Sources" -I".." -I"." -MMD -MF "${OBJECTDIR}/_ext/2037729719/gpio.o.d" -o ${OBJECTDIR}/_ext/2037729719/gpio.o ../Sources/gpio.c   
 	
 ${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o: ../Sources/ads7885Pic32.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/2037729719 
 	@${RM} ${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o.d 
+	@${RM} ${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Headers" -I"../Sources" -I".." -I"." -MMD -MF "${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o.d" -o ${OBJECTDIR}/_ext/2037729719/ads7885Pic32.o ../Sources/ads7885Pic32.c   
 	
 endif

@@ -32,9 +32,8 @@ void __ISR(_UART1_VECTOR, IPL2SOFT ) IntUart1Handler(void) {
     }
 
 //   On ignore les interruptions sur TX
-  if (mU1ATXGetIntFlag()){
-      mU1ATXClearIntFlag();
-  }
+  if (mU1ATXGetIntFlag());
+  mU1ATXClearIntFlag();
       
 }
 
@@ -63,7 +62,7 @@ void init(void){
     uartInit();
     timerInit();
     pwmInit();
-//    spiChannel = ads7885Pic32Open( SPI_CHANNEL1, 40 );
+    spiChannel = ads7885Pic32Open( CHN_SPI, 40 );
 }
 
 /**
@@ -84,7 +83,7 @@ void intConfig(void){
 void close(void){
 
     pwmClose();
-    ads7885Pic32Close( spiChannel );
+    ads7885Pic32Close( CHN_SPI );
 }
 /**
  * @fn  unsigned int fTransfert( unsigned int consigne, unsigned int* mesure, \
@@ -94,11 +93,11 @@ void close(void){
  * @param   mesure      Tableau des valeurs passées de la mesure
  * @param   commande    Tableau des valeurs passées de la commande
  * @return  Commande à l'instant t
- *//*
+ */
 unsigned int fTransfert(unsigned int consigne, unsigned int* mesure, unsigned int* commande){
 
     return mesure[pMesure]/100;
-}*/
+}
 
 /**
  * @fn      int main( void );
@@ -111,9 +110,11 @@ int main(void){
     char cons[10];
     int ref=18;
     int pwm=0;
-    int fil=0x000;
+    int fil=0;
     char BUF_RX[50];
     char BUF_TX[1000];
+    int aux1;
+    char *data_IL, *data_VO, *data_VI;
 
     //Optimisation du fonctionnement du CPU
     SYSTEMConfig(SYS_FREQ, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
@@ -121,36 +122,58 @@ int main(void){
     init();
     intConfig();
 
-    strcpy(BUF_TX,"boost:~# \0");
+
+
+
+
+
+
+    uartPutString(" ****** * * ******* ******     ***    ******    **    ****** ***   ***\r\n");
+    uartPutString("*  **** * * *** *** * *** *   *   *  *  ****   *  *   * **** *  *  * *\r\n");
+    uartPutString("* *     * *   * *   * *** *  *  *  * * *      * ** *  * *    * * * * *\r\n");
+    uartPutString("* *     * *   * *   * ** *   * *** * * *     * **** * * ***  * ** ** *\r\n");
+    uartPutString("* *     * *   * *   * * * *  *  *  * * *     * *  * * * *    * * * * *\r\n");
+    uartPutString("*  **** * *   * *   * *  * *  *   *  *  **** * *  * * * **** * *  *  *\r\n");
+    uartPutString(" ****** * *   * *   * *   * *  ***    ****** * *  * * ****** * *   * *\r\n");
+    uartPutString("citroen corp. with Ixchel Intelligent Systems patnership\r\n");
+    strcpy(BUF_TX,"boost converter module interface. Enter help to know the supported commands\r\nboost:~# \0");
     uartPutString(BUF_TX);
 
     while (1) {;
 
         if (flagTraitement) {
             flagTraitement = 0;
-            //            /*
-            //            // Acquisition
-            //            ads7885Pic32Read(spiChannel, &(mesure[pMesure]));
-            //            pMesure++;
-            //            if (pMesure >= TAILLE_MESURE)
-            //                pMesure = 0;
-            //          gpioLed();
-            //            // Calcul
-            //            commande[pCommande] = fTransfert(consigne, mesure, commande);
-            //
-            //            // Commande
-            //            pwmSet(commande[pCommande]);
-            //            pCommande++;
-            //            if (pCommande >= TAILLE_COMMANDE)
-            //                pCommande = 0;*/
-            pwmSet(pwm);
+            // Acquisition
+            ads7885Pic32Read( CHN_SPI, data_IL, data_VO, data_VI );
+            mesure[0][pMesure]=atoi(data_IL);
+            mesure[1][pMesure]=atoi(data_VO);
+            mesure[2][pMesure]=atoi(data_VI);
+
+            pMesure++;
+            if (pMesure >= TAILLE_MESURE)
+                pMesure = 0;
+          gpioLed();
+            // Calcul
+            commande[pCommande] = fTransfert(consigne, mesure[0], commande);
+//
+//            // Commande
+//            pwmSet(commande[pCommande]);
+//            pCommande++;
+//            if (pCommande >= TAILLE_COMMANDE)
+//                pCommande = 0;*/
+            if (flagAuto == 0){
+                pwmSet(pwm);
+            }
         }
 
         if (flagReception) {
 
             uartPutChar(aux);
 
-            if(aux!='\r'){
+            if(aux=='\b'){
+                if(i>0) i--;
+            }
+            else if(aux!='\r'){
                 BUF_RX[i]=aux;
                 i++;
             }
@@ -184,29 +207,29 @@ int main(void){
                     ref=18;
                 }
                 else if(strcmp(ordre, "manual")==0){
-//                    strcpy(BUF_TX,"pwm mode is running\n\rchange duty cycle value with pwm command\n\r");
-                    sprintf(BUF_TX,"pwm mode is running %i\n\r",pwm);
+                    strcpy(BUF_TX,"pwm mode is running\n\rchange duty cycle value with pwm command\n\r");
                     flagAuto = 0;
-//                    pwm=0;
+                    pwm=0;
                 }
                 else if(strcmp(ordre, "ref")==0){
 
-                    sscanf(cons,"%i",&ref);
+                    sscanf(cons,"%i",&aux1);
 
-                    if((ref!=18)&&(ref!=24)&&(ref!=30)&&(ref!=36)){
+                    if((aux1!=18)&&(aux1!=24)&&(aux1!=30)&&(aux1!=36)){
                         strcpy(BUF_TX,"error: failed value\n\r");
                     }
                     else {
+                        ref=aux1;
                         sprintf(BUF_TX,"output voltage value is updated to %d\n\r",ref);
                     }
                 }
                 else if(strcmp(ordre, "pwm")==0){
 
-                    sscanf(cons,"%i",&pwm);
+                    sscanf(cons,"%i",&aux1);
 
-                    if((pwm>=0)&&(pwm<=100)){
-                        sprintf(BUF_TX,"the duty cycle value is updated to %d\n\r",pwm);
-                        pwm= (pwm*T3_TICK)/100;
+                    if((aux1>=0)&&(aux1<=100)&&(strcmp(cons, "")!=0)){
+                        sprintf(BUF_TX,"the duty cycle value is updated to %d%\n\r",aux1);
+                        pwm= (aux1*T3_TICK)/100;
                     }
                     else {
                         strcpy(BUF_TX,"error: failed value\n\r");
@@ -242,7 +265,7 @@ int main(void){
                     uartPutString("ref          update output voltage reference value\r\n");
                     uartPutString("pwm          update duty cycle value\r\n");
                     uartPutString("means        print currents analog values\r\n");
-                    uartPutString("can          update output voltage reference value\r\n");
+                    uartPutString("can          print can controller configuration\r\n");
                     uartPutString("filter       update can filter\r\n");
                     sprintf(BUF_TX,"help         print supported commands\r\n");
                 }

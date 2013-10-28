@@ -15,6 +15,7 @@
 #define SYS_FREQ        (80000000L)
 #define PB_DIV          2
 #define PERIPH_FREQ     (SYS_FREQ/PB_DIV)
+#define CHN_SPI             SPI_CHANNEL1
 
 
 #endif	/* _HARDWARE_ */

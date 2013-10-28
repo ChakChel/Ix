@@ -1,6 +1,6 @@
 /**
  * @file    uart.c
- * @brief   Fonctions associées à l'UART
+ * @brief   Fonctions associÃ©es Ã  l'UART
  * IDE MPLAB X vs Beta 7.02
  * Compilateur XC32 vs 2.0
  * @author  Ixchel Intelligent Systems
@@ -28,14 +28,14 @@ void uartInit( void ) {
     UARTSetFifoMode( UART1, UART_INTERRUPT_ON_TX_NOT_FULL |
     UART_INTERRUPT_ON_RX_NOT_EMPTY );
 
-    // 8 bits de donnée, pas de parité, 1 bit de stop
+    // 8 bits de donnÃ©e, pas de paritÃ©, 1 bit de stop
     UARTSetLineControl( UART1, UART_DATA_SIZE_8_BITS | UART_PARITY_NONE |
     UART_STOP_BITS_1 );
 
     // Configuration baudrate
     UARTSetDataRate( UART1, UART_FREQ, BAUDRATE );
 
-    // Activation UART en transmission et réception
+    // Activation UART en transmission et rÃ©ception
     UARTEnable( UART1, UART_ENABLE_FLAGS(UART_PERIPHERAL | UART_RX | UART_TX) );
 }
 
@@ -60,8 +60,8 @@ void uartIntConfig( void ) {
 
 /**
  * @fn      char uartGetChar( void )
- * @brief   Réception d'un caractère par l'UART
- * @return  Caractère reçu, ou '\0' si aucun caractère n'a été reçu
+ * @brief   RÃ©ception d'un caractÃ¨re par l'UART
+ * @return  CaractÃ¨re reÃ§u, ou '\0' si aucun caractÃ¨re n'a Ã©tÃ© reÃ§u
  */
 char uartGetChar( void ) {
     
@@ -70,8 +70,8 @@ char uartGetChar( void ) {
 
 /**
  * @fn      void uartPutChar( char c )
- * @brief   Envoi d'un caractère par l'UART
- * @param   c   Caractère à envoyer
+ * @brief   Envoi d'un caractÃ¨re par l'UART
+ * @param   c   CaractÃ¨re Ã  envoyer
  */
 void uartPutChar( char c ) {
     
@@ -82,8 +82,8 @@ void uartPutChar( char c ) {
 
 /**
  * @fn      void uartPutString( char* s )
- * @brief   Envoi d'un string par l'UART suivi d'un retour à la ligne
- * @param   s   Chaîne de caractères à envoyer
+ * @brief   Envoi d'un string par l'UART suivi d'un retour Ã  la ligne
+ * @param   s   ChaÃ®ne de caractÃ¨res Ã  envoyer
  */
 void uartPutString( char* s ) {
 
@@ -91,8 +91,4 @@ void uartPutString( char* s ) {
 
     for (i = 0; s[i] != '\0'; i++)
         uartPutChar(s[i]);
-
-    // Retour à la ligne
-    //    uartPutChar('\r');
-    //    uartPutChar('\n');
 }

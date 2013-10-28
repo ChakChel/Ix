@@ -28,6 +28,7 @@ SpiChannel ads7885Pic32Open( SpiChannel chn, unsigned int srcClkDiv ) {
         return -1;
 
     config = SPI_OPEN_MODE16;   // SPI configuration PIC32
+    config |= SPI_OPEN_DISSDO;  // disable the usage of the SDO pin by the SPI
     config |= SPI_OPEN_ON;      // SPI périphérique est activé
     config |= SPI_OPEN_MSTEN;   // Agit comme un maître de bus
   
@@ -100,7 +101,7 @@ char* data_VI ) {
  * @brief   Ferme le canal
  * @param   chn   Canal à fermer
  */
-void ad7634Pic32Close( SpiChannel chn ) {
+void ads7885Pic32Close( SpiChannel chn ) {
 
     // Fermeture du canal SPI
     SpiChnClose( chn );

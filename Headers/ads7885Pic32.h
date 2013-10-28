@@ -44,8 +44,8 @@ SpiChannel ads7885Pic32Open( SpiChannel chn, unsigned int srcClkDiv );
  * @param   chn   Canal à lire
  * @param   data  Pointeur vers l'emplacement de stockage de la donnée
  */
-void ads7885Pic32Read( SpiChannel chn, int* data );
-
+void ads7885Pic32Read( SpiChannel chn, char* data_IL, char* data_VO, \
+char* data_VI );
 /**
  * @fn      void aads7885Pic32Close( SpiChannel chn );
  * @brief   Ferme le canal
