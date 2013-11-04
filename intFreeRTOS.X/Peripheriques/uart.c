@@ -9,8 +9,6 @@
  */
 
 /* INCLUDES DEPENDENCIES ***************/
-#include <plib.h>
-#include "hardware.h"
 #include "uart.h"
 
 /* FUNCTIONS ***************/
@@ -47,8 +45,8 @@ void uartIntConfig( void ) {
 
     // Configuration de l'interruption sur RX de l'UART1
     INTEnable( INT_SOURCE_UART_RX(UART1), INT_ENABLED );
-	// L'UART a une priorité de 1, car il est moins important que le traitement
-    INTSetVectorPriority( INT_VECTOR_UART(UART1), INT_PRIORITY_LEVEL_1 );
+    // L'UART a une priorité de 1, car il est moins important que le traitement
+    INTSetVectorPriority( INT_VECTOR_UART(UART1), INT_PRIORITY_LEVEL_2 );
     INTSetVectorSubPriority( INT_VECTOR_UART(UART1), INT_SUB_PRIORITY_LEVEL_0 );
 }
 
@@ -59,6 +57,7 @@ void uartIntConfig( void ) {
  * @return  Caractère reçu, ou '\0' si aucun caractère n'a été reçu
  */
 char uartGetChar( void ) {
+    
     if (UARTReceivedDataIsAvailable(UART1))
     	return UARTGetDataByte( UART1 );
     return '\0';
@@ -84,10 +83,6 @@ void uartPutChar( char c ) {
 void uartPutString( char* s ) {
 
     int i;
-
     for (i = 0; s[i] != '\0'; i++)
         uartPutChar(s[i]);
-
-    uartPutChar('\r');
-    uartPutChar('\n');
 }

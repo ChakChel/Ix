@@ -39,9 +39,9 @@
 #ifndef FREERTOS_CONFIG_H
 #define FREERTOS_CONFIG_H
 
-#define configUSE_PREEMPTION			0
+#define configUSE_PREEMPTION			1
 #define configTICK_RATE_HZ			( ( portTickType ) 100 )
-#define configPERIPHERAL_CLOCK_HZ		(40000000UL)
+#define configPERIPHERAL_CLOCK_HZ		(80000000UL)
 #define configCPU_CLOCK_HZ			(80000000UL)
 
 #define configUSE_16_BIT_TICKS			0
@@ -73,10 +73,11 @@ to exclude the API function. */
 #define INCLUDE_uxTaskPriorityGet		0
 #define INCLUDE_vTaskDelete			0
 #define INCLUDE_vTaskCleanUpResources           0
-#define INCLUDE_vTaskSuspend			0
-#define INCLUDE_vTaskDelayUntil			0
-#define INCLUDE_vTaskDelay			0
+#define INCLUDE_vTaskSuspend			1
+#define INCLUDE_vTaskDelayUntil			1
+#define INCLUDE_vTaskDelay			1
 #define INCLUDE_uxTaskGetStackHighWaterMark     0
+#define INCLUDE_vTaskPrioritySet                1
 
 
 #endif /* FREERTOS_CONFIG_H */

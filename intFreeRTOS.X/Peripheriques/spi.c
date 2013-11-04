@@ -31,27 +31,27 @@ SpiChannel ads7885Pic32Open( SpiChannel chn, unsigned int srcClkDiv ) {
     config |= SPI_OPEN_DISSDO;  // disable the usage of the SDO pin by the SPI
     config |= SPI_OPEN_ON;      // SPI périphérique est activé
     config |= SPI_OPEN_MSTEN;   // Agit comme un maître de bus
-  
+
     // brochage module SPI1 :
-    // SDI1 = RC4
-    // SDO1 = RD0
-    // /SS_IL = RD9
-    // /SS_VO = RB0
-    // /SS_VI = RB1
-    // SCK1 = RD10
+    // SDI3A = RF4
+    // SDO3A - desactivé
+    // /SS_IL = RG14
+    // /SS_VO = RA2
+    // /SS_VI = RA3
+    // SCK1 = RF13
 
     // Config des ports entrée/sortie, régle le débit binaire à 20MHz.
     SpiChnOpen( chn, config, srcClkDiv );
 
     // Configuration des GPIOs pour les /CS
-    PORTSetPinsDigitalOut( IOPORT_D, BIT_9 );
-    PORTSetBits( IOPORT_D, BIT_9 );
+    PORTSetPinsDigitalOut( IOPORT_G, BIT_14 );
+    PORTSetBits( IOPORT_G, BIT_14 );
 
-    PORTSetPinsDigitalOut( IOPORT_B, BIT_0 );
-    PORTSetBits( IOPORT_B, BIT_0 );
+    PORTSetPinsDigitalOut( IOPORT_A, BIT_2 );
+    PORTSetBits( IOPORT_A, BIT_2 );
 
-    PORTSetPinsDigitalOut( IOPORT_B, BIT_1 );
-    PORTSetBits( IOPORT_B, BIT_1 );
+    PORTSetPinsDigitalOut( IOPORT_A, BIT_3 );
+    PORTSetBits( IOPORT_A, BIT_3 );
     
     return chn;
 }
@@ -60,40 +60,56 @@ SpiChannel ads7885Pic32Open( SpiChannel chn, unsigned int srcClkDiv ) {
  * @fn      void ads7885Pic32Read( SpiChannel chn, char* data_IL, char* \
  *          data_VO, Char* data_VI )
  * @brief   Lit les donnée envoyées par l'ADC
- * @param   chn   Canal à lire
- * @param   data  Pointeur vers l'emplacement de stockage de la donnée
+ * @param   chn   	Canal à lire
+ * @param   periph	choix de l'ADC
+ * @return  valeur reçu de l'ADC
  */
-void ads7885Pic32Read( SpiChannel chn, char* data_IL, char* data_VI, \
-char* data_VO ) {
+unsigned short ads7885Pic32Read( SpiChannel chn, int periph ) {
+
+	unsigned short data = 0;
+
+    char c[3];
+    c[0]='a';
+    c[1]='x';
+    c[2]=0;
 
     // /CS = 0
-    IL_slave_select_active();
+    switch (periph) {
+    case 1:
+        IL_slave_select_active();
+        break;
+    case 2:
+        VI_slave_select_active();
+        break;
+    case 3:
+        VO_slave_select_active();
+        break;
+    }
+
+    SpiChnPutS(chn, c,2);
+
+    while(!SpiChnTxBuffEmpty(chn));
+    while(!SpiChnRxBuffFull(chn));
     // Reception des caractere SDOUT
-    // on reçoit 2 bit à 0 et 8 bit. PIC32 little endian=>bit de poid failbe à \
-    gauche, on décale donc dans le bon sens de 2 bits
-    *data_IL = SpiChnGetC( chn ) << 2;
+    // on reçoit 2 bit à 0 et 8 bit. PIC32 little endian=>bit de poid failbe à
+    // gauche, on décale donc dans le bon sens de 2 bits
+      SpiChnGetS(chn, &data, 2);
+      data = data >> 5;
 
     // /CS = 1
-    IL_slave_select_desactive();
-
-    // /CS = 0
-    VI_slave_select_active();
-    // Reception des caractere SDOUT
-    // on reçoit 2 bit à 0 et 8 bit. PIC32 little endian=>bit de poid failbe à \
-    gauche, on décale donc dans le bon sens de 2 bits
-    *data_VI = SpiChnGetC( chn ) << 2;
-
-    // /CS = 1
-    VI_slave_select_desactive();
-
-    // /CS = 0
-    VO_slave_select_active();
-    // Reception des caractere SDOUT
-    // on reçoit 2 bit à 0 et 8 bit. PIC32 little endian=>bit de poid failbe à \
-    gauche, on décale donc dans le bon sens de 2 bits
-    *data_VO = SpiChnGetC( chn ) << 2;
-    // /CS = 1
-    VO_slave_select_desactive();
+    switch (periph){
+    case 1:
+        IL_slave_select_desactive();
+        break;
+    case 2:
+        VI_slave_select_desactive();
+        break;
+    case 3:
+        VO_slave_select_desactive();
+        break;
+    }
+    
+    return data;
 }
 
 /**
@@ -108,7 +124,7 @@ void ads7885Pic32Close( SpiChannel chn ) {
 
     // Libération des broches
     // /CS en entrée pour le liberer
-    PORTSetPinsDigitalIn( IOPORT_D, BIT_9 );
-    PORTSetPinsDigitalIn( IOPORT_B, BIT_0 );
-    PORTSetPinsDigitalIn( IOPORT_B, BIT_1 );
+    PORTSetPinsDigitalIn( IOPORT_G, BIT_14 );
+    PORTSetPinsDigitalIn( IOPORT_A, BIT_2 );
+    PORTSetPinsDigitalIn( IOPORT_A, BIT_3 );
 }

@@ -13,10 +13,11 @@
 
 /* INCLUDES DEPENDENCIES ***************/
 #include <plib.h>
+#include "hardware.h"
 
 
 /* MACROS ***************/
-#define UART_FREQ   (40000000L)     // Fréquence UART
+#define UART_FREQ   PERIPH_FREQ     // Fréquence UART
 #define BAUDRATE    115200          // Baudrate
 
 

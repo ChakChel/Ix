@@ -19,6 +19,7 @@
  * @brief   Configuration de l'Output Compare 1
  */
 void pwmInit( void ){
+    
     OpenOC1( OC_ON | OC_TIMER3_SRC | OC_PWM_FAULT_PIN_DISABLE, 0, 0);
 }
 
@@ -29,6 +30,7 @@ void pwmInit( void ){
  */
 void pwmSet( int val ) {
 
+    val = (val*T3_TICK)/100;
     SetDCOC1PWM( val );
 }
 

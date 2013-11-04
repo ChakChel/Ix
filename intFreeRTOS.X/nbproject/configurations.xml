@@ -5,19 +5,19 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="FreeRTOS" projectFiles="true">
-        <itemPath>FreeRTOS/Source/include/mpu_wrappers.h</itemPath>
-        <itemPath>FreeRTOS/Source/include/semphr.h</itemPath>
-        <itemPath>FreeRTOS/Source/include/list.h</itemPath>
-        <itemPath>FreeRTOS/Source/include/FreeRTOS.h</itemPath>
-        <itemPath>FreeRTOS/Source/include/queue.h</itemPath>
-        <itemPath>FreeRTOS/Source/include/portable.h</itemPath>
-        <itemPath>FreeRTOS/Source/include/projdefs.h</itemPath>
-        <itemPath>FreeRTOS/Source/include/StackMacros.h</itemPath>
-        <itemPath>FreeRTOS/Source/include/task.h</itemPath>
-        <itemPath>FreeRTOS/Source/include/timers.h</itemPath>
-        <itemPath>FreeRTOS/Source/include/croutine.h</itemPath>
-        <itemPath>FreeRTOS/Source/portable/MPLAB/PICMX/portmacro.h</itemPath>
-        <itemPath>FreeRTOS/Source/portable/MPLAB/PICMX/ISR_Support.h</itemPath>
+        <itemPath>../FreeRTOS/Source/include/FreeRTOS.h</itemPath>
+        <itemPath>../FreeRTOS/Source/include/croutine.h</itemPath>
+        <itemPath>../FreeRTOS/Source/include/list.h</itemPath>
+        <itemPath>../FreeRTOS/Source/include/mpu_wrappers.h</itemPath>
+        <itemPath>../FreeRTOS/Source/include/portable.h</itemPath>
+        <itemPath>../FreeRTOS/Source/include/projdefs.h</itemPath>
+        <itemPath>../FreeRTOS/Source/include/queue.h</itemPath>
+        <itemPath>../FreeRTOS/Source/include/semphr.h</itemPath>
+        <itemPath>../FreeRTOS/Source/include/StackMacros.h</itemPath>
+        <itemPath>../FreeRTOS/Source/include/task.h</itemPath>
+        <itemPath>../FreeRTOS/Source/include/timers.h</itemPath>
+        <itemPath>../FreeRTOS/Source/portable/MPLAB/PIC32MX/ISR_Support.h</itemPath>
+        <itemPath>../FreeRTOS/Source/portable/MPLAB/PIC32MX/portmacro.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="Peripheriques" projectFiles="true">
         <itemPath>Peripheriques/ads7885Pic32.h</itemPath>
@@ -25,6 +25,7 @@
         <itemPath>Peripheriques/pwm.h</itemPath>
         <itemPath>Peripheriques/timer.h</itemPath>
         <itemPath>Peripheriques/uart.h</itemPath>
+        <itemPath>Peripheriques/can.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="Systeme" projectFiles="true">
         <itemPath>hardware.h</itemPath>
@@ -32,6 +33,7 @@
       </logicalFolder>
       <itemPath>main.h</itemPath>
       <itemPath>FreeRTOSConfig.h</itemPath>
+      <itemPath>ft.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -41,14 +43,14 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f2" displayName="FreeRTOS" projectFiles="true">
-        <itemPath>FreeRTOS/Source/croutine.c</itemPath>
-        <itemPath>FreeRTOS/Source/list.c</itemPath>
-        <itemPath>FreeRTOS/Source/queue.c</itemPath>
-        <itemPath>FreeRTOS/Source/task.c</itemPath>
-        <itemPath>FreeRTOS/Source/timers.c</itemPath>
-        <itemPath>FreeRTOS/Source/portable/MemMang/heap_1.c</itemPath>
-        <itemPath>FreeRTOS/Source/portable/MPLAB/PICMX/port.c</itemPath>
-        <itemPath>FreeRTOS/Source/portable/MPLAB/PICMX/port_asm.S</itemPath>
+        <itemPath>../FreeRTOS/Source/portable/MPLAB/PIC32MX/port.c</itemPath>
+        <itemPath>../FreeRTOS/Source/portable/MPLAB/PIC32MX/port_asm.S</itemPath>
+        <itemPath>../FreeRTOS/Source/portable/MemMang/heap_1.c</itemPath>
+        <itemPath>../FreeRTOS/Source/croutine.c</itemPath>
+        <itemPath>../FreeRTOS/Source/list.c</itemPath>
+        <itemPath>../FreeRTOS/Source/queue.c</itemPath>
+        <itemPath>../FreeRTOS/Source/tasks.c</itemPath>
+        <itemPath>../FreeRTOS/Source/timers.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="Peripheriques" projectFiles="true">
         <itemPath>Peripheriques/gpio.c</itemPath>
@@ -56,6 +58,8 @@
         <itemPath>Peripheriques/spi.c</itemPath>
         <itemPath>Peripheriques/timer.c</itemPath>
         <itemPath>Peripheriques/uart.c</itemPath>
+        <itemPath>ft.c</itemPath>
+        <itemPath>Peripheriques/can.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>
@@ -105,7 +109,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="C:\intFreeRTOS.X\FreeRTOS\Source\include;C:\intFreeRTOS.X\FreeRTOS\Source\portable\MPLAB\PICMX;C:\intFreeRTOS.X\FreeRTOS;C:\intFreeRTOS.X;C:\intFreeRTOS.X\Systeme;C:\intFreeRTOS.X\Peripheriques;.;.."/>
+                  value="C:\Projet\FreeRTOS\Source\include;C:\Projet\FreeRTOS\Source\portable\MPLAB\PIC32MX;.;C:\intFreeRTOS.X;C:\intFreeRTOS.X\Systeme;C:\Projet\intFreeRTOS.X\Peripheriques;.;.."/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="isolate-each-function" value="false"/>
         <property key="make-warnings-into-errors" value="false"/>
@@ -125,8 +129,9 @@
         <property key="exclude-floating-point-library" value="false"/>
         <property key="expand-macros" value="false"/>
         <property key="extra-include-directories-for-assembler"
-                  value="C:\intFreeRTOS.X\FreeRTOS\Source\portable\MPLAB\PICMX"/>
-        <property key="extra-include-directories-for-preprocessor" value=""/>
+                  value="C:\Projet\FreeRTOS\Source\portable\MPLAB\PIC32MX"/>
+        <property key="extra-include-directories-for-preprocessor"
+                  value="C:\intFreeRTOS.X;C:\Projet\FreeRTOS\Source\include;C:\Projet\FreeRTOS\Source\portable\MPLAB\PIC32MX;.;.."/>
         <property key="false-conditionals" value="false"/>
         <property key="keep-locals" value="false"/>
         <property key="list-assembly" value="false"/>
@@ -139,10 +144,57 @@
         <property key="warning-level" value=""/>
       </C32-AS>
       <C32-LD>
+        <property key="additional-options-use-response-files" value="false"/>
+        <property key="enable-check-sections" value="false"/>
+        <property key="exclude-floating-point-library" value="false"/>
+        <property key="exclude-standard-libraries" value="false"/>
+        <property key="extra-lib-directories" value=""/>
+        <property key="generate-16-bit-code" value="false"/>
+        <property key="generate-cross-reference-file" value="false"/>
+        <property key="heap-size" value=""/>
+        <property key="input-libraries" value=""/>
+        <property key="linker-symbols" value=""/>
+        <property key="map-file" value="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map"/>
+        <property key="no-startup-files" value="false"/>
+        <property key="oXC32ld-extra-opts" value=""/>
+        <property key="optimization-level" value=""/>
+        <property key="preprocessor-macros" value=""/>
+        <property key="remove-unused-sections" value="false"/>
+        <property key="report-memory-usage" value="false"/>
+        <property key="stack-size" value=""/>
+        <property key="symbol-stripping" value=""/>
+        <property key="trace-symbols" value=""/>
+        <property key="warn-section-align" value="false"/>
       </C32-LD>
       <C32CPP>
+        <property key="additional-warnings" value="false"/>
+        <property key="check-new" value="false"/>
+        <property key="eh-specs" value="true"/>
+        <property key="enable-app-io" value="false"/>
+        <property key="enable-omit-frame-pointer" value="false"/>
+        <property key="enable-symbols" value="true"/>
+        <property key="enable-unroll-loops" value="false"/>
+        <property key="exceptions" value="true"/>
+        <property key="exclude-floating-point" value="false"/>
+        <property key="extra-include-directories" value=""/>
+        <property key="generate-16-bit-code" value="false"/>
+        <property key="isolate-each-function" value="false"/>
+        <property key="make-warnings-into-errors" value="false"/>
+        <property key="optimization-level" value=""/>
+        <property key="place-data-into-section" value="false"/>
+        <property key="post-instruction-scheduling" value="default"/>
+        <property key="pre-instruction-scheduling" value="default"/>
+        <property key="preprocessor-macros" value=""/>
+        <property key="rtti" value="true"/>
+        <property key="strict-ansi" value="false"/>
+        <property key="use-cci" value="false"/>
+        <property key="use-iar" value="false"/>
+        <property key="use-indirect-calls" value="false"/>
       </C32CPP>
       <C32Global>
+        <property key="legacy-libc" value="false"/>
+        <property key="save-temps" value="false"/>
+        <property key="wpo-lto" value="false"/>
       </C32Global>
       <ICD3PlatformTool>
       </ICD3PlatformTool>

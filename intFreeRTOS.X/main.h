@@ -13,7 +13,10 @@
 
 /* INCLUDES DEPENDENCIES ***************/
 // Librairie standarde du C
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <GenericTypeDefs.h>
 
 // Configuration matérielle
 #include "hardware.h"
@@ -24,6 +27,9 @@
 // Application
 #include <p32xxxx.h>    // PIC32
 #include <plib.h>       // Périphériques
+
+// Fonction de Transfert
+#include "ft.h"
 
 // RTOS
 #include "FreeRTOS.h"
@@ -40,6 +46,9 @@
 #include "pwm.h"
 #include "timer.h"
 #include "uart.h"
+#include "can.h"
+
+
 
 /* CONFIG ***************/
 #pragma config FWDTEN=OFF
@@ -58,8 +67,18 @@
 #pragma config FPLLMUL=MUL_20
 #pragma config FPLLODIV=DIV_1
 
-// FPBDIV = DIV_2 pré-config de la freq du bus periph.
-#pragma config FPBDIV=DIV_2
+// FPBDIV = DIV_1 pré-config de la freq du bus periph.
+#pragma config FPBDIV=DIV_1
+
+// Use Alternative PIN
+#pragma config FCANIO = OFF
+
+
+/* GLOBAL VARIABLES ***************/
+//Handle de tache
+xTaskHandle xTraitementMesuresHandle;
+xTaskHandle xDialogueUARTHandle;
+xTaskHandle xDialogueCANHandle;
 
 
 /* PROTOTYPES ***************/
@@ -87,18 +106,6 @@ void rtosInit( void );
  * @brief   Fermeture des périphériques
  */
 void close( void );
-
-/**
- * @fn  unsigned int fTransfert( unsigned int consigne, unsigned int* mesure, \
-        unsigned int* commande )
- * @brief   Fonction de transfert
- * @param   consigne    Valeur de la consigne
- * @param   mesure      Tableau des valeurs passées de la mesure
- * @param   commande    Tableau des valeurs passées de la commande
- * @return  Commande à l'instant t
- */
-unsigned int fTransfert( unsigned int consigne, unsigned int* mesure,\
-unsigned int* commande );
 
 /**
  * @fn  void traitementMesures(void* pvParameters)

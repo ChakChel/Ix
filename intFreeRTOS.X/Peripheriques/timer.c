@@ -15,20 +15,20 @@
 
 /**
  * @fn      void timerInit( void )
- * @brief   Configuration du timer 3 et 4
+ * @brief   Configuration du timer 3
  */
 void timerInit( void ) {
     
-    OpenTimer3( T3_ON | T3_SOURCE_INT | T3_PS_1_64, T3_TICK );
+    OpenTimer3( T3_ON | T3_SOURCE_INT | T3_PS_1_1, T3_TICK );
 }
 
 /**
  * @fn      void timerIntConfig( void )
- * @brief   Configuration des interruptions
+ * @brief   Configuration des interruptions du timer 3
  */
 void timerIntConfig( void ) {
 
     // L'interruption pour le  SPI a une priorité de 2,
     // car il est vital qu'il soit traité immédiatement
-    ConfigIntTimer3( T3_INT_ON | T3_INT_PRIOR_2 );
+//    ConfigIntTimer3( T3_INT_ON | T3_INT_PRIOR_1 );
 }

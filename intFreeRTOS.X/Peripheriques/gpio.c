@@ -28,7 +28,7 @@ void gpioInit( void ) {
     PORTSetPinsDigitalOut( IOPORT_D, BIT_1 );
 
     // Initialisation de RD1 au niveau bas
-    mPORTDClearBits( BIT_1 );
+    mPORTDSetBits( BIT_1 );
 }
 
 /**
@@ -36,7 +36,7 @@ void gpioInit( void ) {
  * @brief   Mise en place du clignotement de la led sans charge utile connectée
  */
 char gpioLed( char charge ) {
-
+    
     if (charge == 0)
         PORTToggleBits( IOPORT_D, BIT_1 );
 }

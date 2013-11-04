@@ -16,14 +16,14 @@
 
 
 /* MACROS ***************/
-#define IL_slave_select_active()       LATDbits.LATD9 = 0
-#define IL_slave_select_desactive()    LATDbits.LATD9 = 1
+#define IL_slave_select_active()       LATGbits.LATG14 = 0
+#define IL_slave_select_desactive()    LATGbits.LATG14 = 1
 
-#define VI_slave_select_active()       LATAbits.LATA14 = 0
-#define VI_slave_select_desactive()    LATAbits.LATA14 = 1
+#define VO_slave_select_active()       LATAbits.LATA2 = 0
+#define VO_slave_select_desactive()    LATAbits.LATA2 = 1
 
-#define VO_slave_select_active()       LATAbits.LATA15 = 0
-#define VO_slave_select_desactive()    LATAbits.LATA15 = 1
+#define VI_slave_select_active()       LATAbits.LATA3 = 0
+#define VI_slave_select_desactive()    LATAbits.LATA3 = 1
 
 
 /* FUNCTION PROTOTYPES ***************/
@@ -39,13 +39,15 @@
 SpiChannel ads7885Pic32Open( SpiChannel chn, unsigned int srcClkDiv );
 
 /**
- * @fn      void ads7885Pic32Read( SpiChannel chn, int* data );
+ * @fn      void ads7885Pic32Read( SpiChannel chn, char* data_IL, char* \
+ *          data_VO, Char* data_VI )
  * @brief   Lit les donnée envoyées par l'ADC
- * @param   chn   Canal à lire
- * @param   data  Pointeur vers l'emplacement de stockage de la donnée
+ * @param   chn     Canal à lire
+ * @param   periph  Choix de l'ADC
+ * @return  valeur reçu de l'ADC
  */
-void ads7885Pic32Read( SpiChannel chn, char* data_IL, char* data_VI, \
-char* data_VO );
+unsigned short ads7885Pic32Read( SpiChannel chn, int periph );
+
 /**
  * @fn      void aads7885Pic32Close( SpiChannel chn );
  * @brief   Ferme le canal

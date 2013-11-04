@@ -1,0 +1,29 @@
+build/default/debug/main.o:  \
+main.c  \
+main.h  \
+hardware.h  \
+software.h  \
+ft.h  \
+ C:/Projet/FreeRTOS/Source/include/FreeRTOS.h  \
+ C:/Projet/FreeRTOS/Source/include/projdefs.h  \
+FreeRTOSConfig.h  \
+ C:/Projet/FreeRTOS/Source/include/portable.h  \
+ C:/Projet/FreeRTOS/Source/portable/MPLAB/PIC32MX/portmacro.h  \
+ C:/Projet/FreeRTOS/Source/include/mpu_wrappers.h  \
+ C:/Projet/FreeRTOS/Source/include/croutine.h  \
+ C:/Projet/FreeRTOS/Source/include/list.h  \
+ C:/Projet/FreeRTOS/Source/include/timers.h  \
+ C:/Projet/FreeRTOS/Source/include/task.h  \
+ C:/Projet/FreeRTOS/Source/include/task.h  \
+ C:/Projet/FreeRTOS/Source/include/queue.h  \
+ C:/Projet/FreeRTOS/Source/include/semphr.h  \
+ C:/Projet/FreeRTOS/Source/include/queue.h  \
+FreeRTOSConfig.h  \
+ C:/Projet/intFreeRTOS.X/Peripheriques/ads7885Pic32.h  \
+ C:/Projet/intFreeRTOS.X/Peripheriques/gpio.h  \
+ C:/Projet/intFreeRTOS.X/Peripheriques/pwm.h  \
+hardware.h  \
+ C:/Projet/intFreeRTOS.X/Peripheriques/timer.h  \
+ C:/Projet/intFreeRTOS.X/Peripheriques/timer.h  \
+ C:/Projet/intFreeRTOS.X/Peripheriques/uart.h  \
+ C:/Projet/intFreeRTOS.X/Peripheriques/can.h 

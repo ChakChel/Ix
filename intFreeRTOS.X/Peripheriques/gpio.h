@@ -13,7 +13,6 @@
 
 /* INCLUDES DEPENDENCIES ***************/
 #include <plib.h>
-#include "hardware.h"
 
 
 /* PROTOTYPES ***************/
